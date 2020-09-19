@@ -11,7 +11,12 @@ const app = express();
 //Conexion a la bd
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://localhost:27017/crud-mevn';
+/* const uri = 'mongodb://localhost:27017/crud-mevn'; */
+//conexxion en la nube
+
+
+const uri = 'mongodb+srv://lucaspintos909:bicyclestandar@clusterprueba.7nsj3.gcp.mongodb.net/notas-crud?retryWrites=true&w=majority';
+
 const options = {useNewUrlParser: true, useCreateIndex: true,useUnifiedTopology: true};
 
 mongoose.connect(uri, options).then(
@@ -38,7 +43,7 @@ const history = require('connect-history-api-fallback');
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('puerto', process.env.PORT || 3000);
+app.set('puerto', process.env.PORT || 3025);
 app.listen(app.get('puerto'), () => {
   console.log('Servidor local en el puerto: '+ app.get('puerto'));
 });

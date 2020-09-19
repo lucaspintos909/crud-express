@@ -91,7 +91,7 @@ router.put('/nota/:id', async(req,res)=>{
 
   try {
     const notaDB= await Nota.findByIdAndUpdate(_id, body,{new : true});
-    res.json(notaDB)
+    res.json(notaDB);
     
   } catch (error) {
     return res.status(400).json({
