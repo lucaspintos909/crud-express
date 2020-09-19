@@ -57,5 +57,36 @@ router.get('/notas', async(req, res)=>{
 
 });
 
+//eliminar nota
+router.delete('/nota/:id', async(req,res)=>{
+
+  const _id = req.params.id;
+
+  try {
+
+    const notaDB = await Nota.findByIdAndDelete({_id});
+    
+    if(!notaDB){
+      return res.status(400).json({
+        mensaje: 'Ocurrio un error',
+        error
+      });
+    }
+    res.json(notaDB);
+    
+    
+  } catch (error) {
+    return res.status(400).json({
+      mensaje: 'Ocurrio un error',
+      error
+    });
+  }
+
+});
+
+
+
+
+
 // Exportamos la configuración de express app
 module.exports = router;
