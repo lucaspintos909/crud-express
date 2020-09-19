@@ -5,6 +5,21 @@ import path from 'path';
 
 const app = express();
 
+
+
+
+//Conexion a la bd
+const mongoose = require('mongoose');
+
+const uri = 'mongodb://localhost:27017/crud-mevn';
+const options = {useNewUrlParser: true, useCreateIndex: true,useUnifiedTopology: true};
+
+mongoose.connect(uri, options).then(
+  () => { console.log('Conectado a DB') },
+  err => { console.log(err) }
+);
+
+
 // Middleware
 app.use(morgan('tiny'));
 app.use(cors());
@@ -16,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 /* app.get('/', (req, res) => {
   res.send('Hola Perri!');
 }); */
+app.use('/api', require('./routes/nota'));
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
